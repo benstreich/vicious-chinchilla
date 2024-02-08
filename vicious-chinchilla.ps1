@@ -3,9 +3,46 @@
     {
     param([string]$inputhash, [int]$method, [string]$path)
         
-       Get-Content -Path $path | ForEach-Object{
-            $content = $_ -split '\s+' | Where-Object { $_ -ne '' }
-       }
+   
+    $file = Get-Item -Path $path
+    $estTimeSek = (($file.Length / 1KB) / 0.0068) / 34841.176
+
+    Write-host "`n"
+
+    if($estTimeSek -gt 60 -and $estTimeSek -lt 3600)
+    {
+        $estTimeMin = $estTimeSek / 60
+         Write-host "Estimated Time: " -NoNewline
+         Write-host "${estTimeMin}m" "`n" -ForegroundColor Green
+    }
+
+    if($estTimeSek -gt 3600 -and $estTimeSek -lt 86400)
+    {
+        $estTimeHour = $estTimeSek / 3600
+         Write-host "Estimated Time: " -NoNewline
+         Write-host "${estTimeHour}h" "`n" -ForegroundColor Green
+    }
+    if($estTimeSek -gt 86400)
+    {
+        $estTimeDays = $estTimeSek / 86400
+        Write-host "Estimated Time: " -NoNewline
+        Write-host "${estTimeDays}h" "`n" -ForegroundColor Green
+    }
+
+    else
+    {
+        Write-host "Estimated Time: " -NoNewline
+        Write-host $estTimeSek "`n" -ForegroundColor Green
+    }
+
+
+    $reader = [System.IO.StreamReader]::new($path)
+
+    while ($line = $reader.ReadLine()) {
+        $content = ($line -split '\s+' | Where-Object { $_ -ne '' })
+    }
+    
+    $reader.Close()
 
        switch($method)
        {
@@ -21,7 +58,9 @@
              
                 if($inputhash -eq $hashString)
                 {
-                    Write-host "{$inputhash}:$c"
+                    Write-host "{$inputhash}:" -NoNewline
+                    Write-host $c -ForegroundColor DarkGreen
+                    Start-Sleep -Seconds 60
                     break
                 }
 
@@ -40,7 +79,9 @@
              
                 if($inputhash -eq $hashString)
                 {
-                    Write-host "{$inputhash}:$c"
+                   Write-host "{$inputhash}:" -NoNewline
+                    Write-host $c -ForegroundColor DarkGreen
+                    Start-Sleep -Seconds 60
                     break
                 }
 
@@ -59,7 +100,9 @@
              
                 if($inputhash -eq $hashString)
                 {
-                    Write-host "{$inputhash}:$c"
+                    Write-host "{$inputhash}:" -NoNewline
+                    Write-host $c -ForegroundColor DarkGreen
+                    Start-Sleep -Seconds 60
                     break
                 }
 
@@ -78,7 +121,9 @@
              
                 if($inputhash -eq $hashString)
                 {
-                    Write-host "{$inputhash}:$c"
+                    Write-host "{$inputhash}:" -NoNewline
+                    Write-host $c -ForegroundColor DarkGreen
+                    Start-Sleep -Seconds 60
                     break
                 }
 
@@ -98,6 +143,7 @@
                 if($inputhash -eq $hashString)
                 {
                     Write-host "{$inputhash}:$c"
+                    Start-Sleep -Seconds 60
                     break
                 }
 
@@ -108,24 +154,54 @@
        }
 
 
-
-
-
-      
-
     }
     
+    $name = 'vicious-chinchilla.'
+    $char = $name.ToCharArray()
+
+    foreach($c in $char)
+    {
+        Write-host $c -NoNewline -ForegroundColor Darkblue
+        Start-Sleep -Milliseconds 40
+    }
+
+    Write-host ""
+    Start-Sleep -Seconds 1
+    
+    for($i = 0; $i -le 4; $i++)
+    {
+        switch($i)
+        {
+           
+            1
+            {
+                Write-host $name -ForegroundColor Blue
+                Start-Sleep -Milliseconds 100
+            }
+    
+            2
+            {
+                Write-host $name -ForegroundColor Green
+                Start-Sleep -Milliseconds 100
+            }
+            3
+            {
+                Write-host $name -ForegroundColor Yellow
+                Start-Sleep -Milliseconds 100
+            }
+            4
+            {
+                Write-host $name -ForegroundColor Red
+                Start-Sleep -Milliseconds 100
+            }
+        }
+    }
+    
+    Write-host "`n"
     
     
-    Write-host "         _________ _______ _________ _______           _______    _______          _________ _        _______          _________ _        _        _______ "
-    Write-host "|\     /|\__   __/(  ____ \\__   __/(  ___  )|\     /|(  ____ \  (  ____ \|\     /|\__   __/( (    /|(  ____ \|\     /|\__   __/( \      ( \      (  ___  )"
-    Write-host "| )   ( |   ) (   | (    \/   ) (   | (   ) || )   ( || (    \/  | (    \/| )   ( |   ) (   |  \  ( || (    \/| )   ( |   ) (   | (      | (      | (   ) |"
-    Write-host "| |   | |   | |   | |         | |   | |   | || |   | || (_____   | |      | (___) |   | |   |   \ | || |      | (___) |   | |   | |      | |      | (___) |"
-    Write-host "( (   ) )   | |   | |         | |   | |   | || |   | |(_____  )  | |      |  ___  |   | |   | (\ \) || |      |  ___  |   | |   | |      | |      |  ___  |"
-    Write-host " \ \_/ /    | |   | |         | |   | |   | || |   | |      ) |  | |      | (   ) |   | |   | | \   || |      | (   ) |   | |   | |      | |      | (   ) |"
-    Write-host "  \   /  ___) (___| (____/\___) (___| (___) || (___) |/\____) |  | (____/\| )   ( |___) (___| )  \  || (____/\| )   ( |___) (___| (____/\| (____/\| )   ( |"
-    Write-host "   \_/   \_______/(_______/\_______/(_______)(_______)\_______)  (_______/|/     \|\_______/|/    )_)(_______/|/     \|\_______/(_______/(_______/|/     \|"
-    Write-host "                                                                                                                                                           "
+    
+
 
     [string]$cmd = Read-Host "~$"
     
@@ -173,10 +249,11 @@
             $path = $Matches[1]
         }
 
-       
+       Measure-Command{
        vc $hash $encMethod $path
-
+       }
     }
+
     else 
     {
         Write-host "Wrong input format"
