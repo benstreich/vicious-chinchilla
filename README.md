@@ -17,20 +17,22 @@ Go to the project directory
   cd my-project
 ```
 
-
-
-## Preview
-
-![image](https://github.com/benstreich/vicious-chinchilla/assets/90034208/eec73077-56c3-45e1-a603-6580ff069ada)
-
-
 ## Usage/Examples
 
 ```
-~!: hash;
+~$: hash;
     [MANDATORY][-p[string]Path] 
     [MANDATORY][-e[int]]
 ```
+
+```
+~$: a1b36887d23646550783ec9fdbfed4b9a92b2f7d; -pC:\Users\Wordlist.txt -e1
+~$: 3cb42e48dd62331c3e00bae05a7c8fc7; -pC:\Users\Wordlist.txt -e0
+~$: 1316378e8d3b8ee2c66b3f40c1c692758b2adabd8628a964795bd86e4930a77e; -pC:\Users\Wordlist.txt -e2
+
+```
+
+
 ## Encryption Methods
 
 
@@ -41,6 +43,13 @@ Go to the project directory
 | 2 | SHA256 |
 | 3 | SHA384 |
 | 4 | SHA512 |
+
+## Preview
+
+![image](https://github.com/benstreich/vicious-chinchilla/assets/90034208/eec73077-56c3-45e1-a603-6580ff069ada)
+
+
+
 
 
 ## License
