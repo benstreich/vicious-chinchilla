@@ -16,23 +16,23 @@
          Write-host "${estTimeMin}m" "`n" -ForegroundColor Green
     }
 
-    if($estTimeSek -gt 3600 -and $estTimeSek -lt 86400)
+    elseif($estTimeSek -gt 3600 -and $estTimeSek -lt 86400)
     {
         $estTimeHour = $estTimeSek / 3600
          Write-host "Estimated Time: " -NoNewline
          Write-host "${estTimeHour}h" "`n" -ForegroundColor Green
     }
-    if($estTimeSek -gt 86400)
+    elseif($estTimeSek -gt 86400)
     {
         $estTimeDays = $estTimeSek / 86400
         Write-host "Estimated Time: " -NoNewline
-        Write-host "${estTimeDays}h" "`n" -ForegroundColor Green
+        Write-host "${estTimeDays}d" "`n" -ForegroundColor Green
     }
 
     else
     {
         Write-host "Estimated Time: " -NoNewline
-        Write-host $estTimeSek "`n" -ForegroundColor Green
+        Write-host "${estTimeSek}s" "`n" -ForegroundColor Green
     }
 
 
